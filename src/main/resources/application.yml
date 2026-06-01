@@ -6,22 +6,13 @@ micronaut:
       enabled: true
       configurations:
         web:
-          allowed-origins:
-            - http://localhost:3000
-            - http://localhost:4200
-            - http://localhost:5173
-            - http://localhost:8081
+          allowed-origin-regex: "http://localhost(:\\d+)?"
           allowed-methods:
             - GET
             - POST
             - PUT
+            - PATCH
             - DELETE
             - OPTIONS
-          allowed-headers:
-            - Content-Type
-            - Authorization
-            - Accept
-          exposed-headers:
-            - Content-Type
           allow-credentials: true
           max-age: 3600
