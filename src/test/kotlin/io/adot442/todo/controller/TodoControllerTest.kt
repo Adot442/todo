@@ -277,4 +277,33 @@ class TodoControllerTest {
             assertEquals(1, (stats["pending"] as Number).toInt())
         }
     }
+
+    @Nested
+    @DisplayName("CORS")
+    inner class Cors {
+
+        @Test
+        @DisplayName("allows preflight requests from the Vercel client URL")
+        fun allowsVercelClientOrigin() {
+            val request = HttpRequest.OPTIONS<Any>("/api/todos")
+                .header("Origin", "https://todo-client-mu75.vercel.app")
+                .header("Access-Control-Request-Method", "GET")
+
+            val response = client.toBlocking().exchange(request, Any::class.java)
+            assertEquals(HttpStatus.OK, response.status)
+            assertEquals("https://todo-client-mu75.vercel.app", response.header("Access-Control-Allow-Origin"))
+        }
+
+        @Test
+        @DisplayName("still allows preflight requests from localhost origins")
+        fun allowsLocalhostOrigin() {
+            val request = HttpRequest.OPTIONS<Any>("/api/todos")
+                .header("Origin", "http://localhost:3000")
+                .header("Access-Control-Request-Method", "GET")
+
+            val response = client.toBlocking().exchange(request, Any::class.java)
+            assertEquals(HttpStatus.OK, response.status)
+            assertEquals("http://localhost:3000", response.header("Access-Control-Allow-Origin"))
+        }
+    }
 }

@@ -6,7 +6,7 @@ micronaut:
       enabled: true
       configurations:
         web:
-          allowed-origin-regex: "http://localhost(:\\d+)?"
+          allowed-origin-regex: "^(https://todo-client-mu75\\.vercel\\.app|http://localhost(:\\d+)?)$"
           allowed-methods:
             - GET
             - POST
