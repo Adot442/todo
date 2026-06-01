@@ -1,0 +1,7 @@
+micronaut:
+  application:
+    name: todo-server
+  test:
+    resources:
+      enabled: false
+

@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: io.adot442.todo
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle_kotlin
+features: [app-name, gradle, http-client-test, jdbc-hikari, junit, kotlin, kotlin-application, ksp, logback, micronaut-aot, micronaut-build, micronaut-http-validation, netty-server, openapi, postgres, readme, serialization-jackson, shade, static-resources, test-resources, yaml, yaml-build]
